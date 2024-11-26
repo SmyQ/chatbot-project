@@ -1,5 +1,5 @@
 import os
-from openai import OpenAI
+import openai
 import streamlit as st
 
 # Custom color scheme
@@ -23,7 +23,7 @@ st.set_page_config(
 if 'client' not in st.session_state:
     try:
         st.info("TEST")
-        OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
+        openai.api_key = st.secrets["OPENAI_API_KEY"]
         # st.session_state.client = OpenAI(
         #    api_key=st.secrets["OPENAI_API_KEY"]
         # )
@@ -244,7 +244,7 @@ if user_input := st.chat_input("Wpisz swoje pytanie tutaj..."):
         try:
             # Call OpenAI's chat completion endpoint with new API syntax
             # response = st.session_state.client.chat.completions.create(
-            response = OpenAI.Completion.create(
+            response = openai.Completion.create(
                 # model="gpt-3.5-turbo",
                 engine="text-davinci-003",
                 messages=[
