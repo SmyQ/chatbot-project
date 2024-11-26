@@ -23,10 +23,10 @@ st.set_page_config(
 if 'client' not in st.session_state:
     try:
         st.info("TEST")
-        # OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
-        st.session_state.client = OpenAI(
-            api_key=st.secrets["OPENAI_API_KEY"]
-        )
+        OpenAI.api_key = st.secrets["OPENAI_API_KEY"]
+        # st.session_state.client = OpenAI(
+        #    api_key=st.secrets["OPENAI_API_KEY"]
+        # )
     except Exception as e:
         st.error("Error initializing OpenAI client. Please check your API key in Streamlit secrets.")
         st.stop()
@@ -243,9 +243,10 @@ if user_input := st.chat_input("Wpisz swoje pytanie tutaj..."):
 
         try:
             # Call OpenAI's chat completion endpoint with new API syntax
-            # response = OpenAI.ChatCompletion.create(
-            response = st.session_state.client.chat.completions.create(
-                model="gpt-3.5-turbo",
+            # response = st.session_state.client.chat.completions.create(
+            response = OpenAI.Completion.create(
+                # model="gpt-3.5-turbo",
+                engine="text-davinci-003",
                 messages=[
                     {"role": m["role"], "content": m["content"]}
                     for m in st.session_state.messages
