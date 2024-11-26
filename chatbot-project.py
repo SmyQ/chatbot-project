@@ -12,6 +12,8 @@ COLORS = {
     'lighter_blue': '#004488'
 }
 
+st.info("TEST")
+
 # Initialize OpenAI client with secret
 if 'client' not in st.session_state:
     try:
