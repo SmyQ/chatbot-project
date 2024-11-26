@@ -12,11 +12,17 @@ COLORS = {
     'lighter_blue': '#004488'
 }
 
-st.info("TEST")
+# Page styling
+st.set_page_config(
+    page_title="Asystent Legitize",
+    page_icon="💬",
+    layout="wide"
+)
 
 # Initialize OpenAI client with secret
 if 'client' not in st.session_state:
     try:
+        st.info("TEST")
         st.session_state.client = OpenAI(
             api_key=st.secrets["OPENAI_API_KEY"]
         )
@@ -25,13 +31,6 @@ if 'client' not in st.session_state:
         st.stop()
 
 fine_tuned_model = "ft:gpt-4o-2024-08-06:personal:version-1:AXSDqRcx"
-
-# Page styling
-st.set_page_config(
-    page_title="Asystent Legitize",
-    page_icon="💬",
-    layout="wide"
-)
 
 # Updated CSS with fixed circuit border
 st.markdown("""
